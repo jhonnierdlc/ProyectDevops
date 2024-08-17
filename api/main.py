@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from ProyectDevops.api.backendpython import personas 
+from backendpython import personas 
 
 app = FastAPI()
 
