@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from ProyectDevops.api.db.models.persona import Persona
-from db.client import db_client
+from db.models.persona import Persona
+
 
 
 router = APIRouter(prefix="/persona",
