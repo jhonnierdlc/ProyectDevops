@@ -1,0 +1,10 @@
+version: '3.9'  # Asegúrate de especificar la versión del archivo de Docker Compose
+
+services:
+  core_api:
+    build: api
+    container_name: core-api-container
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./api/.:/app:rw

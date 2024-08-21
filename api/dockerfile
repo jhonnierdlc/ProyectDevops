@@ -8,12 +8,13 @@ WORKDIR /app
 COPY requirements.txt /app/
 
 # Instala las dependencias
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia el resto de la aplicación en el contenedor
-COPY . .
+COPY . /app
 
 # Expone el puerto en el que correrá la aplicación
-EXPOSE 80
+EXPOSE 15400
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+# Comando para ejecutar la aplicación
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "15400"]

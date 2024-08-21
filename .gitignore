@@ -1,0 +1,21 @@
+# Ignorar el entorno virtual
+venv/
+
+# Archivos y directorios de configuración de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de entorno de desarrollo
+.env
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos de distribución
+*.egg
+*.egg-info/
+dist/
+build/
