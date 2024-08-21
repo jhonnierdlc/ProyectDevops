@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from datetime import date
 
 class Persona(BaseModel):
     tipo_identificacion: str
@@ -9,5 +9,5 @@ class Persona(BaseModel):
     apellido1: str
     apellido2: str
     sexo: str
-    fecha_nacimiento: str
+    fecha_nacimiento: date
     
