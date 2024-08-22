@@ -24,12 +24,12 @@ async def root():
         cursor.close()
         connection.close()
 
-@router.get("/{tipo_identificacion}")
-async def root(numero_identificacion : int):
+@router.get("/{numero_identificacion}")
+async def root(numero_identificacion : str):
     connection = get_db_connection()
     cursor = connection.cursor()
     try:
-        cursor.execute("SELECT * FROM persona WHERE numero_identificacion = %s", (numero_identificacion,))
+        cursor.execute("SELECT * FROM personas WHERE numero_identificacion = %s", (numero_identificacion,))
         persona = cursor.fetchone()
         if persona:
             return {"tipo_identificacion": persona[0], "numero_identificacion": persona[1], "nombre1": persona[2], "nombre2": persona[3], "apellido1": persona[4], "apellido2": persona[5], "sexo": persona[6], "fecha_nacimiento": persona[7]}
