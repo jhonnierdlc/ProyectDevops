@@ -3,7 +3,7 @@ from backendpython.src.conexion_postgresql import get_db_connection
 from backendpython.src.models.persona import Persona
 
 
-router = APIRouter(prefix="/persona",
+router = APIRouter(prefix="/api/backend-python",
                    tags=["persona-python"],
                    responses={404: {"message": "No encontrado"}})
 
