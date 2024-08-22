@@ -17,7 +17,7 @@ async def root():
     try:
         cursor.execute("SELECT * FROM personas")
         personas = cursor.fetchall()
-        return [{"tipo_identificacion": p[0], "numero_identificacion": p[1], "nombre1": p[2], "nombre2": p[3], "apellido1": p[4], "apellido2": p[5], "sexo": p[6], "fecha_nacimiento": p[7]} for p in personas]
+        return personas
     except Exception as ex:
         raise HTTPException(status_code=500, detail=f"Error al obtener personas: {ex}")
     finally:
@@ -32,7 +32,7 @@ async def root(numero_identificacion : str):
         cursor.execute("SELECT * FROM personas WHERE numero_identificacion = %s", (numero_identificacion,))
         persona = cursor.fetchone()
         if persona:
-            return {"tipo_identificacion": persona[0], "numero_identificacion": persona[1], "nombre1": persona[2], "nombre2": persona[3], "apellido1": persona[4], "apellido2": persona[5], "sexo": persona[6], "fecha_nacimiento": persona[7]}
+            return persona
         else:
             raise HTTPException(status_code=404, detail="Persona no encontrada")
     except Exception as ex:
@@ -42,15 +42,7 @@ async def root(numero_identificacion : str):
         connection.close()
     
 
-            
-def search_persona(numero_identificacion: int):
-    personas = filter(lambda persona: persona.numero_identificacion == numero_identificacion, personas_list)
-    try:
-        return list(personas)[0]
-    except:
-        return {"error": "no se encontro"}
-
-@router.post("/", response_model=Persona, status_code=201)
+@router.post("/", response_model=Persona, status_code=200)
 async def add_persona(persona: Persona):
     connection = get_db_connection()
     cursor = connection.cursor()
